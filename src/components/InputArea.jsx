@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { addItem } from "../redux/actions";
 
 function InputArea(props) {
   const [inputText, setInputText] = useState("");
@@ -11,8 +13,10 @@ function InputArea(props) {
       <input onChange={handleChange} type="text" value={inputText} />
       <button
         onClick={() => {
-          props.addNewItem(inputText);
-          setInputText("");
+          if (inputText) {
+            props.addItem(inputText);
+            setInputText("");
+          }
         }}
       >
         <span>Add</span>
@@ -21,4 +25,8 @@ function InputArea(props) {
   );
 }
 
-export default InputArea;
+const mapDispatchToProps = {
+  addItem
+};
+
+export default connect(null, mapDispatchToProps)(InputArea);

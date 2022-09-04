@@ -2,12 +2,7 @@ import React from "react";
 
 function ToDoItem(props) {
   return (
-    <div
-      className="listOfItems"
-      onClick={() => {
-        props.onChecked(props.id);
-      }}
-    >
+    <div className="listOfItems" onClick={props.onClick}>
       <li>{props.text}</li>
     </div>
   );
